@@ -1,0 +1,13 @@
+Yu Lin
+Easy Animator
+Documentation
+
+In this assignment I have created a three part design to create a model representation for an animation app. The first part is to represent shapes, the second part to represent Motion, and third part puting the first two together will represent the model.
+
+In my shape Interface IShape, I have created a group of getters that return primitive type data stored about a shape object. The Interface contain a get state method. Once implemented this method will compile all features of a shape and return them in a string. I have no setters for shape Interface or at implementation level. Once a IShape type is constructed, it is final and cannot be altered. I have a factory that can make variants of the IShape type. This factory is used in the model. I will talk about the specifics of this factory usage in the model discussion.
+
+Next in my representation of motion, from a high level, I wanted this representation to store information about the changes in shape, and not shapes themselves. This design decision allows me to devide the shape from the motion itself, rendering a more modular pattern and supporting any future adaptations applie to the Motion or Shape repsentation. If A different Shape interface needs to come into place in the future, the changes will not affect Motion. A IMotion type relates to a IShape type by a string identifier. IMotion variants can store different information about a Shape type. An Change color class can store the changes in color as a function of time while a Scale class can store the changes in size, while both implementation retain common functionalities, which return a descriptive string about the changes they store, or retrieving the identifier that's associated with the the shape object that the changes are applied to, returning the start and end time when the changes are applied to shapes.
+
+Finally in my Model section, I store a List of Shapes and a List of Motions. I have a addShape function that uses the Shapefactory to make a shape, the class of which depends on a Enum parameter ShapeType, and then adds the newly made shape to a list of shapes stored in the model. In chose this design decision, because it forces the Model implementation to make the shape while shifts the responsiblity away from the user. I also have a add motion function that first checks if the new motion causes any conflict with a list of existing motions, and if not, procceds to insert the new motion in the correct order.
+
+Because My shape and motion representations are both able to represents themselve in string format, represent the model format becomes easy.
